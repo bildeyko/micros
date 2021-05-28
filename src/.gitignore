@@ -2,3 +2,15 @@
 bin/
 obj/
 *.csproj.user
+
+### VisualStudioCode ###
+# https://stackoverflow.com/a/57749909/2851946
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+**/.history
