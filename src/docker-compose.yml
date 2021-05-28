@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  dogs-service:
+    container_name: dogs-service
+    image: ${DOCKER_REGISTRY-}microsfunnyservice
+    build:
+      context: .
+      dockerfile: Services/Micros.Funny.Service/Dockerfile
+    environment:
+      - ANIMAL_TYPE=dog
+  cats-service:
+    container_name: cats-service
+    image: ${DOCKER_REGISTRY-}microsfunnyservice
+    build:
+      context: .
+      dockerfile: Services/Micros.Funny.Service/Dockerfile
+    environment:
+      - ANIMAL_TYPE=cat
