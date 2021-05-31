@@ -10,13 +10,12 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
-using Micros.Funny.Service.Providers;
-using Micros.Funny.Service.Services;
-using Microsoft.OpenApi.Any;
+using Micros.Image.Generator.Service.Providers;
+using Micros.Image.Generator.Service.Services;
+using Micros.Image.Generator.Service.Tools;
 
-namespace Micros.Funny.Service
+namespace Micros.Image.Generator.Service
 {
     public class Startup
     {
@@ -32,12 +31,12 @@ namespace Micros.Funny.Service
         {
 
             services.AddControllers()
-                .AddJsonOptions(options => 
+                .AddJsonOptions(options =>
                         options.JsonSerializerOptions.PropertyNamingPolicy = null /* For PascalCase properties */
-                    );
+                );
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Micros.Funny.Service", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Micros.Image.Generator.Service", Version = "v1" });
             });
 
             AddServices(services);
@@ -50,10 +49,10 @@ namespace Micros.Funny.Service
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Micros.Funny.Service v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Micros.Image.Generator.Service v1"));
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -67,21 +66,10 @@ namespace Micros.Funny.Service
 
         private void AddServices(IServiceCollection services)
         {
-            var animalType = Environment.GetEnvironmentVariable("ANIMAL_TYPE");
-            switch (animalType)
-            {
-                case "dog":
-                    services.AddScoped<IFactProvider, DogsFactProvider>();
-                    services.AddScoped<IImageProvider, DogsImageProvider>();
-                    break;
-                case "cat":
-                    services.AddScoped<IFactProvider, CatsFactProvider>();
-                    services.AddScoped<IImageProvider, CatsImageProvider>();
-                    break;
-            }
-
-            services.AddScoped<IFactService, FactService>();
-            services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<IGeneratorService, GeneratorService>();
+            services.AddScoped<IStorageProvider, LocalStorageProvider>();
+            services.AddScoped<IImageToolsProvider, ImageToolsProvider>();
+            services.AddScoped<IDownloader, Downloader>();
         }
     }
 }

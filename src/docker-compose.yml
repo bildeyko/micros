@@ -17,3 +17,9 @@ services:
       dockerfile: Services/Micros.Funny.Service/Dockerfile
     environment:
       - ANIMAL_TYPE=cat
+  micros.image.generator.service:
+    image: ${DOCKER_REGISTRY-}microsimagegeneratorservice
+    build:
+      context: .
+      dockerfile: Services/Micros.Image.Generator.Service/Dockerfile
+

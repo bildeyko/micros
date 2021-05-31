@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Micros.Funny.Service.Controllers
+namespace Micros.Image.Generator.Service.Controllers
 {
     [ApiController]
     [Route("[controller]")]

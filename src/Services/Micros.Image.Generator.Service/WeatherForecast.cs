@@ -1,6 +1,6 @@
 using System;
 
-namespace Micros.Funny.Service
+namespace Micros.Image.Generator.Service
 {
     public class WeatherForecast
     {
