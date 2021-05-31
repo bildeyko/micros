@@ -20,14 +20,18 @@ namespace Micros.Api.Service.Providers
         public async Task<string> GetFactAsync()
         {
             var builder = new UriBuilder(Host) {Path = "/api/fact"};
-            var result = await builder.Uri.GetJsonAsync<FactDto>();
+            var result = await builder.Uri
+                .ConfigureRequest(c => c.Timeout = new TimeSpan(0,0,10))
+                .GetJsonAsync<FactDto>();
             return result.Fact;
         }
 
         public async Task<string> GetImageUrlAsync()
         {
             var builder = new UriBuilder(Host) { Path = "/api/image" };
-            var result = await builder.Uri.GetJsonAsync<Image>();
+            var result = await builder.Uri
+                .ConfigureRequest(c => c.Timeout = new TimeSpan(0, 0, 10))
+                .GetJsonAsync<Image>();
             return result.ImageUrl;
         }
     }

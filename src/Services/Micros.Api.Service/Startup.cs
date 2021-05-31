@@ -65,6 +65,7 @@ namespace Micros.Api.Service
             services.AddScoped<ICardsServices, CardsServices>();
             services.AddScoped<IImageGeneratorServiceProvider, ImageGeneratorServiceProvider>();
             services.AddScoped<IDogsServiceProvider, DogsServiceProvider>();
+            services.AddScoped<ICatsServiceProvider, CatsServiceProvider>();
         }
     }
 }

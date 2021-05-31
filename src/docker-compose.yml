@@ -20,16 +20,19 @@ services:
       - ANIMAL_TYPE=cat
 
   image-generator-service:
+    container_name: image-generator-service
     image: ${DOCKER_REGISTRY-}microsimagegeneratorservice
     build:
       context: .
       dockerfile: Services/Micros.Image.Generator.Service/Dockerfile
 
   api-service:
+    container_name: api-service
     image: ${DOCKER_REGISTRY-}microsapiservice
     build:
       context: .
       dockerfile: Services/Micros.Api.Service/Dockerfile
     environment:
       - DOGS_SERVICE_URL=http://dogs-service
+      - CATS_SERVICE_URL=http://cats-service
       - IMAGE_GENERATOR_SERVICE_URL=http://image-generator-service

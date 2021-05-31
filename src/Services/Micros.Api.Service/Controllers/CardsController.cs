@@ -22,10 +22,26 @@ namespace Micros.Api.Service.Controllers
             _cardsServices = cardsServices;
         }
 
-        [HttpGet]
-        public async Task<ActionResult> GetCard()
+        [HttpGet("random")]
+        public async Task<ActionResult> GetRandomCard()
         {
             await _cardsServices.GenerateRandomCard();
+
+            return new OkResult();
+        }
+
+        [HttpGet("dog")]
+        public async Task<ActionResult> GetDogCard()
+        {
+            await _cardsServices.GenerateDogCard();
+
+            return new OkResult();
+        }
+
+        [HttpGet("cat")]
+        public async Task<ActionResult> GetCatCard()
+        {
+            await _cardsServices.GenerateCatCard();
 
             return new OkResult();
         }
