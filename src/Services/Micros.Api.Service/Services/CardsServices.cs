@@ -25,8 +25,8 @@ namespace Micros.Api.Service.Services
 
         public async Task GenerateRandomCard()
         {
-            var random = new Random().Next(1, 2);
-            if (random == 1)
+            var random = new Random().Next(1, 10);
+            if (random < 5)
             {
                 await GenerateDogCard();
             }
