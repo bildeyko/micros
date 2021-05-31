@@ -52,9 +52,9 @@ namespace Micros.Image.Generator.Service.Providers
         private void AddImage(MagickImage baseImage, byte[] imageBytes)
         {
             using var image = new MagickImage(imageBytes, MagickFormat.Jpeg);
+            image.Resize(700, 500);
             image.BorderColor = new MagickColor("gray20");
             image.Border(3);
-            image.Resize(700, 500);
             baseImage.Composite(image, Gravity.North, new PointD(0, 60), CompositeOperator.Over);
         }
     }

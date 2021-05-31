@@ -9,6 +9,7 @@ services:
       dockerfile: Services/Micros.Funny.Service/Dockerfile
     environment:
       - ANIMAL_TYPE=dog
+
   cats-service:
     container_name: cats-service
     image: ${DOCKER_REGISTRY-}microsfunnyservice
@@ -17,9 +18,18 @@ services:
       dockerfile: Services/Micros.Funny.Service/Dockerfile
     environment:
       - ANIMAL_TYPE=cat
-  micros.image.generator.service:
+
+  image-generator-service:
     image: ${DOCKER_REGISTRY-}microsimagegeneratorservice
     build:
       context: .
       dockerfile: Services/Micros.Image.Generator.Service/Dockerfile
 
+  api-service:
+    image: ${DOCKER_REGISTRY-}microsapiservice
+    build:
+      context: .
+      dockerfile: Services/Micros.Api.Service/Dockerfile
+    environment:
+      - DOGS_SERVICE_URL=http://dogs-service
+      - IMAGE_GENERATOR_SERVICE_URL=http://image-generator-service

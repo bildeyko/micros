@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Micros.Api.Service.Providers;
+using Micros.Api.Service.Services;
 
 namespace Micros.Api.Service
 {
@@ -32,6 +34,8 @@ namespace Micros.Api.Service
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Micros.Api.Service", Version = "v1" });
             });
+
+            AddServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +58,13 @@ namespace Micros.Api.Service
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void AddServices(IServiceCollection services)
+        {
+            services.AddScoped<ICardsServices, CardsServices>();
+            services.AddScoped<IImageGeneratorServiceProvider, ImageGeneratorServiceProvider>();
+            services.AddScoped<IDogsServiceProvider, DogsServiceProvider>();
         }
     }
 }
