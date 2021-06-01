@@ -17,14 +17,14 @@ namespace Micros.Funny.Service.Controllers
     public class ApiController : ControllerBase
     {
         private readonly ILogger<ApiController> _logger;
-        private readonly IImageProvider _imageProvider;
+        private readonly IImageService _imageService;
         private readonly IFactService _factService;
 
-        public ApiController(ILogger<ApiController> logger, IImageProvider imageProvider,
+        public ApiController(ILogger<ApiController> logger, IImageService imageService,
             IFactService factService)
         {
             _logger = logger;
-            _imageProvider = imageProvider;
+            _imageService = imageService;
             _factService = factService;
         }
 
@@ -32,7 +32,7 @@ namespace Micros.Funny.Service.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ImageViewModel>> GetImage()
         {
-            var url = await _imageProvider.GetImageUrlAsync();
+            var url = await _imageService.GetRandomImageUrlAsync();
             return Ok(new ImageViewModel
             {
                 ImageUrl = url
