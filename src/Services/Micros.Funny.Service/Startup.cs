@@ -48,9 +48,14 @@ namespace Micros.Funny.Service
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/error-local-development");
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Micros.Funny.Service v1"));
+            }
+            else
+            {
+                app.UseExceptionHandler("/error");
             }
 
             //app.UseHttpsRedirection();
