@@ -6,7 +6,7 @@
     <ProjectGuid>6fd4a917-aeab-41f6-bd58-57e1db712240</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>micros.funny.service</DockerServiceName>
+    <DockerServiceName>api-service</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
