@@ -18,13 +18,7 @@ namespace Micros.Funny.Service.Providers
         public async Task<string> GetImageUrlAsync()
         {
             var response = await _url.GetJsonAsync<CatImageResponse>();
-            var builder = new UriBuilder(_url)
-            {
-                Path = response.Url, 
-                Query = string.Empty,
-                Port = -1,
-            };
-            return builder.ToString();
+            return response.Url;
         }
     }
 }
